@@ -1,11 +1,11 @@
-// main.jsx (segunda modificación)
+// main.jsx
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Parent } from './Parent';
+import { Father } from './Father';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <Parent />
+        <Father />
     </React.StrictMode>
 );
