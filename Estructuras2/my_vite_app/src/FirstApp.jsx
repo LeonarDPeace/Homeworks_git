@@ -1,15 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import './App.css';
 
 function App() {
-  return (
-    <>
-        <h1>First App</h1>
-        <span>10</span>
-    </>
-  );
+    const [counter, setCounter] = useState(10);
+
+    const handleAdd = () => {
+        setCounter(counter + 1);
+    };
+
+    const handleSubstract = () => {
+        setCounter(counter - 1);
+    };
+
+    const handleReset = () => {
+        setCounter(10); // Reinicia el contador al valor inicial (10 en este caso)
+    };
+
+    return (
+        <>
+            <h1>First App</h1>
+            <span>{counter}</span>
+            <button onClick={handleAdd}>+1</button>
+            <button onClick={handleSubstract}>-1</button>
+            <button onClick={handleReset}>Reset</button>
+        </>
+    );
 }
 
-export default App
+export default App;
