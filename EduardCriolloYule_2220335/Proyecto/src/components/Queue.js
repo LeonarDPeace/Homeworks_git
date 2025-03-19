@@ -1,18 +1,18 @@
-class Stack {
+class Queue {
     constructor(){
         this.items = [];
     }
 
-    push(value){
+    enqueue(value){
         this.items.push(value);
     }
 
-    pop (){
+    dequeue (){
         return this.items.length > 0 ? this.items.pop() : null;
     }
 
     peek(){
-        return this.items.length > 0 ? this.items[this.items.length - 1] : null;
+        return this.items.length > 0 ? this.items[0] : null;
     }
 
     isEmpty() {
@@ -24,10 +24,10 @@ class Stack {
     }
 
     print() {
-        this.items.slice().reverse().forEach(item => {
+        this.items.forEach(item => {
             console.log(item);
         });
     }
 }
 
-export default Stack;
+export default Queue;

@@ -1,22 +1,20 @@
 import { useState } from 'react'
 import './App.css'
-import Stack from './components/Stack'
+import Queue from './components/Queue'
 
 function App() {
-  const [stack] = useState(new Stack())
-  const [stackItems, setStackItems] = useState([])
+  const [queue] = useState(new Queue())
+  const [queueItems, setQueueItems] = useState([])
 
   const handleSubmit = (event) => {
     event.preventDefault()
 
-    const nombreLibro = event.target.nombreLibro_input.value
-    const nombreAutor = event.target.nombreAutor_input.value
-    const ISBN = event.target.ISBN_input.value
-    const nombreEditorial = event.target.nombreEditorial_input.value
+    const usuarioBanco = event.target.usuarioBanco_input.value
+    const valorRetiro = event.target.valorRetiro_input.value
 
-    stack.push({ nombreLibro, nombreAutor, ISBN, nombreEditorial })
+    queue.enqueue({ usuarioBanco, valorRetiro })
 
-    setStackItems([...stack.items])
+    setQueueItems([...queue.items])
 
     event.target.reset()
   }
@@ -31,35 +29,23 @@ function App() {
       </head>
       <form onSubmit={handleSubmit}>
         <div class="form-group">
-          <label for="nombreLibro_label">Nombre Libro</label>
-          <input type="text" class="form-control" id="nombreLibro_input" placeholder="Escriba nombre del Libro"/>
+          <label for="usuarioBanco_label">Usuario del Banco</label>
+          <input type="text" class="form-control" id="usuarioBanco_input" placeholder="Escriba su nombre"/>
         </div>
         <div class="form-group">
-          <label for="nombreAutor_label">Nombre Autor</label>
-          <input type="text" class="form-control" id="nombreAutor_input" placeholder="Escriba nombre del Autor"/>
+          <label for="valorRetiro_label">Valor del Retiro</label>
+          <input type="text" class="form-control" id="valorRetiro_input" placeholder="Valor del retiro"/>
           {/*<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>*/}
-        </div>
-        <div class="form-group">
-          <label for="ISBN_label">Nombre Libro</label>
-          <input type="text" class="form-control" id="nombreLibro_input" placeholder="Escriba nombre del Libro"/>
-        </div>
-        <div class="form-group">
-          <label for="nombreISBN_label">ISBN</label>
-          <input type="text" class="form-control" id="ISBN_input" placeholder="Escriba codigo ISBM del Libro"/>
-        </div>
-        <div class="form-group">
-          <label for="nombreEditorial_label">Nombre Editorial</label>
-          <input type="text" class="form-control" id="nombreEditorial_input" placeholder="Escriba nombre de la Editorial"/>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
 
       <div className="mt-4">
-        <h3>Stack:</h3>
+        <h3>Queue:</h3>
         <ul>
-          {stackItems.map((item, index) => (
+          {queueItems.map((item, index) => (
             <li key={index}>
-              <strong>Libro:</strong> {item.nombreLibro}, <strong>Autor:</strong> {item.nombreAutor}, <strong>ISBN:</strong> {item.ISBN}, <strong>Editorial:</strong> {item.nombreEditorial}
+              <strong>Libro:</strong> {item.usuarioBanco}, <strong>Autor:</strong> {item.valorRetiro}
             </li>
           ))}
         </ul>
