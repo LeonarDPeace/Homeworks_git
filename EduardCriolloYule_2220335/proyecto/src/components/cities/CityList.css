@@ -1,0 +1,38 @@
+/* Organización de cada fila de ciudad */
+.city-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+/* Botón principal de la ciudad */
+.city-button {
+  flex-grow: 1;             /* Ocupa todo el espacio posible */
+  min-width: 180px;         /* Ancho horizontal mínimo */
+  padding: 0.5rem 1rem;
+  text-align: left;         /* Texto alineado a la izquierda */
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.city-button:hover {
+  background-color: #FFE1B5;
+}
+
+/* Botón de eliminar */
+.delete-button {
+  margin-left: 0.5rem;
+  background: transparent;
+  border: none;
+  font-size: 1.1rem;
+  color: var(--color-text);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.delete-button:hover {
+  color: #ff4d4f;
+}

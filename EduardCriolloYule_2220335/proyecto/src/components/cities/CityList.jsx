@@ -1,25 +1,34 @@
 import React, { useContext } from 'react';
 import { NetworkContext } from '../../context/NetworkContext';
+import './CityList.css';
 
 export default function CityList({ onSelect }) {
   const { state, dispatch } = useContext(NetworkContext);
-  const { cities } = state;
 
   return (
-    <ul className="city-list">
-      {cities.map(city => (
-        <li key={city.id} className="city-item">
-          <span onClick={() => onSelect(city.id)} className="city-name">
-            {city.name}
-          </span>
+    <div>
+      <h2>Ciudades</h2>
+      {state.cities.map(city => (
+        <div key={city.id} className="city-item">
+          {/* Botón para seleccionar la ciudad */}
           <button
-            onClick={() => dispatch({ type: 'REMOVE_CITY', payload: { id: city.id } })}
-            className="btn-delete-city"
+            className="city-button"
+            onClick={() => onSelect(city.id)}
+          >
+            {city.name}
+          </button>
+
+          {/* Botón para borrar la ciudad */}
+          <button
+            className="delete-button"
+            onClick={() =>
+              dispatch({ type: 'REMOVE_CITY', payload: { id: city.id } })
+            }
           >
             ✕
           </button>
-        </li>
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }

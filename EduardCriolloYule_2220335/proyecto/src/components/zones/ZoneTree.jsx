@@ -4,7 +4,6 @@ import { NetworkContext } from '../../context/NetworkContext';
 
 const convertNode = node => ({
   name: node.name,
-  attributes: { id: node.id },
   children: node.children.map(convertNode)
 });
 

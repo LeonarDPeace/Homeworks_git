@@ -27,6 +27,21 @@ const editZoneRec = (node, targetId, newName) => {
   };
 };
 
+function addZoneImmutable(node, parentId, newZone) {
+  if (node.id === parentId) {
+    return {
+      ...node,
+      children: [...node.children, newZone]
+    };
+  }
+  return {
+    ...node,
+    children: node.children.map(child =>
+      addZoneImmutable(child, parentId, newZone)
+    )
+  };
+}
+
 function networkReducer(state, action) {
   switch (action.type) {
     case 'ADD_CITY': {
@@ -54,17 +69,15 @@ function networkReducer(state, action) {
 
     case 'ADD_ZONE': {
       const { cityId, parentId, name } = action.payload;
-      return {
-        ...state,
-        cities: state.cities.map(city => {
-          if (city.id !== cityId) return city;
-          const newZone = { id: uuid(), name, children: [] };
-          return {
-            ...city,
-            zones: addZoneRec(city.zones, parentId, newZone)
-          };
-        })
-      };
+      const newZone = { id: uuid(), name, children: [] };
+      const cities = state.cities.map(city => {
+        if (city.id !== cityId) return city;
+        return {
+          ...city,
+          zones: addZoneImmutable(city.zones, parentId, newZone)
+        };
+      });
+      return { ...state, cities };
     }
 
     case 'EDIT_ZONE': {
