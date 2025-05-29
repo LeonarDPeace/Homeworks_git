@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import Crud from './components/Crud';
+import Chat from './components/Chat';
 
 const App = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -13,6 +14,7 @@ const App = () => {
         <>
           <Dashboard />
           <Crud />
+          <Chat />
         </>
       ) : (
         <Login />
