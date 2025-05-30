@@ -1,0 +1,6 @@
+@import 'variables';
+
+/// Convierte px a rem
+@function to-rem($px, $base: 16) {
+  @return ($px / $base) * 1rem;
+}

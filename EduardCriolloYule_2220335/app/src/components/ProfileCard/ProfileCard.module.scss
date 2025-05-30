@@ -1,0 +1,62 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/functions';
+
+.card {
+  @include flex-center;
+  flex-direction: column;
+  background: lighten($primary-color, 35%);
+  padding: to-rem(24);
+  border-radius: $radius;
+  @include soft-shadow(0.4rem);
+
+  &:hover {
+    background: $primary-color;
+    color: white;
+    cursor: pointer;
+  }
+
+  // Anidamiento: estilos del botón dentro de la tarjeta
+  .button {
+    margin-top: $spacing-unit;
+    padding: to-rem(8) to-rem(16);
+    background: $secondary-color;
+    border: none;
+    border-radius: $radius / 2;
+    font-family: $font-stack;
+    font-size: to-rem(14);
+    transition: background 0.2s;
+
+    &:hover {
+      background: darken($secondary-color, 10%);
+    }
+  }
+
+  // Uso de bucle: generar clases de tamaño de avatar
+  @for $i from 1 through 3 {
+    &.size-#{$i} {
+      .avatarWrapper {
+        width: to-rem(40 * $i);
+        height: to-rem(40 * $i);
+      }
+    }
+  }
+}
+
+.avatarWrapper {
+  overflow: hidden;
+  border-radius: 50%;
+  @include soft-shadow;
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name {
+  margin-top: $spacing-unit / 2;
+  font-family: $font-stack;
+  font-size: to-rem(18);
+}
